@@ -1,0 +1,4 @@
+port: 8080
+server_shutdown_timeout: 5
+db_connect_timeout: 5
+logger_level: info

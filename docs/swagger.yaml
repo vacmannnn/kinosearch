@@ -1,0 +1,48 @@
+basePath: /
+definitions:
+  handler.MovieResponse:
+    properties:
+      director:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+      year:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Simple movie JSON API for homework backend practice.
+  title: Kinosearch API
+  version: "1.0"
+paths:
+  /{id}/info.0.json:
+    get:
+      description: Returns movie info by id.
+      parameters:
+      - description: Movie id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.MovieResponse'
+        "404":
+          description: Not found
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Get movie info
+      tags:
+      - movies
+swagger: "2.0"
