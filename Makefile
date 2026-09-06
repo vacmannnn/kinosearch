@@ -1,6 +1,6 @@
 SQLC ?= go run github.com/sqlc-dev/sqlc/cmd/sqlc@v1.30.0
 
-.PHONY: up db-up db-down db-kill sqlc fmt-check vet build ci
+.PHONY: up db-up db-down db-kill sqlc seed-wikidata fmt-check vet build ci
 
 up:
 	docker compose up -d --wait postgres
@@ -18,6 +18,9 @@ db-kill:
 
 sqlc:
 	$(SQLC) generate
+
+seed-wikidata:
+	go run ./cmd/seed-wikidata -limit 1000
 
 fmt-check:
 	test -z "$$(gofmt -l .)"
